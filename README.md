@@ -4,19 +4,16 @@ A modern, production-ready Next.js boilerplate with TypeScript, Tailwind CSS, sh
 
 ## ✨ Features
 
-- ⚡ **Next.js 16** - App Router with Server Components
-- 🔷 **TypeScript** - Type safety and better developer experience
-- 🎨 **Tailwind CSS** - Utility-first CSS framework
-- 🧩 **shadcn/ui** - Beautiful, accessible component library
-- 🔮 **TanStack Query** - Powerful data fetching and caching
-- 📚 **Storybook** - Component development and documentation
-- 🌓 **Dark Mode** - Built-in light/dark theme switching
-- 📱 **Responsive** - Mobile-first design approach
-- 🐳 **Docker** - Production-ready containerization
-- 💅 **Prettier** - Code formatting
-- 🔍 **ESLint** - Code linting
-- 🎯 **Poppins Font** - Modern, clean typography
-- 🏗️ **Enterprise Structure** - Scalable folder organization
+- **Next.js 16** - App Router with Server Components
+- **TypeScript** - Type safety and better developer experience
+- **Tailwind CSS** - Utility-first CSS framework
+- **shadcn/ui** - Beautiful, accessible component library
+- **TanStack Query** - Powerful data fetching and caching
+- **Storybook** - Component development and documentation
+- **Dark Mode** - Built-in light/dark theme switching
+- **Docker** - Production-ready containerization
+- **Prettier** - Code formatting
+- **ESLint** - Code linting
 
 ## 📦 Tech Stack
 
@@ -27,7 +24,8 @@ A modern, production-ready Next.js boilerplate with TypeScript, Tailwind CSS, sh
 - **Icons:** Lucide React
 - **Theme:** next-themes
 - **Data Fetching:** TanStack Query (React Query)
-- **Component Documentation:** Storybook
+- **HTTP Client:** Axios
+- **Component Documentation:** Storybook 10
 - **Package Manager:** Bun
 - **Container:** Docker
 
@@ -42,30 +40,30 @@ A modern, production-ready Next.js boilerplate with TypeScript, Tailwind CSS, sh
 
 1. **Clone the repository:**
 
-\`\`\`bash
+```bash
 git clone <your-repo-url>
 cd nextshad-boilerplate
-\`\`\`
+```
 
 2. **Install dependencies:**
 
-\`\`\`bash
+```bash
 bun install
 
 # or
 
 npm install
-\`\`\`
+```
 
 3. **Run the development server:**
 
-\`\`\`bash
+```bash
 bun dev
 
 # or
 
 npm run dev
-\`\`\`
+```
 
 4. **Open your browser:**
 
@@ -101,34 +99,40 @@ This generates a static site in the `storybook-static` directory that you can de
 
 ## 📁 Project Structure
 
-\`\`\`
+```
 nextshad-boilerplate/
+├── .storybook/              # Storybook configuration
+│   ├── main.ts              # Storybook main config
+│   └── preview.tsx          # Storybook preview config
+├── public/                  # Static assets
 ├── src/
-│ ├── app/ # Next.js app router
-│ │ ├── layout.tsx # Root layout
-│ │ ├── page.tsx # Home page
-│ │ └── globals.css # Global styles
-│ ├── components/
-│ │ ├── ui/ # shadcn/ui components
-│ │ ├── features/ # Feature-specific components
-│ │ ├── layouts/ # Layout components
-│ │ └── providers/ # Context providers
-│ ├── hooks/ # Custom React hooks
-│ ├── lib/
-│ │ ├── utils.ts # Utility functions
-│ │ ├── api/ # API utilities
-│ │ └── config/ # Configuration files
-│ ├── types/ # TypeScript type definitions
-│ └── constants/ # Application constants
-├── public/ # Static assets
-├── .prettierrc # Prettier configuration
-├── components.json # shadcn/ui configuration
-├── tailwind.config.ts # Tailwind configuration
-├── tsconfig.json # TypeScript configuration
-├── Dockerfile # Docker configuration
-├── docker-compose.yml # Docker Compose configuration
-└── package.json # Dependencies and scripts
-\`\`\`
+│   ├── app/                 # Next.js App Router
+│   │   ├── layout.tsx       # Root layout
+│   │   ├── page.tsx         # Home page
+│   │   └── globals.css      # Global styles
+│   ├── components/
+│   │   ├── ui/              # shadcn/ui components
+│   │   ├── features/        # Feature-specific components
+│   │   ├── layouts/         # Layout components
+│   │   └── providers/       # Context providers (Theme, Query)
+│   ├── hooks/               # Custom React hooks
+│   │   ├── index.ts         # useMediaQuery, useDebounce
+│   │   └── use-query-hooks.ts  # TanStack Query hooks
+│   ├── lib/
+│   │   ├── utils.ts         # Utility functions (cn helper)
+│   │   ├── api/             # API utilities (axios wrapper)
+│   │   └── config/          # Configuration files
+│   ├── types/               # TypeScript type definitions
+│   └── constants/           # Application constants
+├── .prettierrc              # Prettier configuration
+├── components.json          # shadcn/ui configuration
+├── tailwind.config.ts       # Tailwind CSS configuration
+├── tsconfig.json            # TypeScript configuration
+├── next.config.ts           # Next.js configuration
+├── Dockerfile               # Docker configuration
+├── docker-compose.yml       # Docker Compose configuration
+└── package.json             # Dependencies and scripts
+```
 
 ## 🎨 Components Included
 
@@ -148,19 +152,19 @@ The boilerplate includes the following shadcn/ui components:
 
 To add more shadcn/ui components:
 
-\`\`\`bash
+```bash
 bunx shadcn@latest add <component-name>
 
 # or
 
 npx shadcn@latest add <component-name>
-\`\`\`
+```
 
-Example:
+**Example:**
 
-\`\`\`bash
+```bash
 bunx shadcn@latest add dialog card
-\`\`\`
+```
 
 ## 🎯 Available Scripts
 
@@ -186,57 +190,6 @@ bun run docker:run   # Run Docker container
 bun run docker:up    # Start with docker-compose
 bun run docker:down  # Stop docker-compose
 ```
-
-## 🐳 Docker Usage
-
-### Building the Docker Image
-
-\`\`\`bash
-docker build -t nextshad-boilerplate .
-\`\`\`
-
-### Running the Container
-
-\`\`\`bash
-docker run -p 3000:3000 nextshad-boilerplate
-\`\`\`
-
-### Using Docker Compose
-
-\`\`\`bash
-
-# Start the application
-
-docker-compose up -d
-
-# Stop the application
-
-docker-compose down
-\`\`\`
-
-The application will be available at [http://localhost:3000](http://localhost:3000)
-
-### ⚠️ Important: Development vs Production with Docker
-
-**For Development (Recommended):**
-
-```bash
-# Use regular bun commands - faster, with hot reload
-bun dev
-```
-
-**For Production Testing/Deployment:**
-
-```bash
-# Use Docker to test production builds
-docker-compose up -d
-```
-
-**Key Points:**
-
-- ✅ Use `bun dev` for daily development (faster, hot reload)
-- ✅ Use Docker for production testing and deployment
-- ❌ Don't use Docker for active development (slower, no hot reload)
 
 ## 🔮 TanStack Query (React Query)
 
@@ -301,89 +254,19 @@ For more information, check the [TanStack Query Documentation](https://tanstack.
 
 The boilerplate includes a built-in theme switcher component. To use it:
 
-\`\`\`tsx
-import { ThemeSwitcher } from "@/components/features/theme-switcher";
+```tsx
+import { ThemeSwitcher } from "@/components/features/ThemeSwitcher";
 
 export default function MyComponent() {
-return (
-
-<div>
-<ThemeSwitcher />
-</div>
-);
+  return (
+    <div>
+      <ThemeSwitcher />
+    </div>
+  );
 }
-\`\`\`
+```
 
-## 🎨 Customizing Theme
-
-### Colors
-
-Edit the color variables in \`src/app/globals.css\`:
-
-\`\`\`css
-:root {
---background: 0 0% 100%;
---foreground: 240 10% 3.9%;
---primary: 240 5.9% 10%;
-/_ ... more colors _/
-}
-\`\`\`
-
-### Fonts
-
-The default font is Poppins. To change it, edit \`src/app/layout.tsx\`:
-
-\`\`\`tsx
-import { YourFont } from "next/font/google";
-
-const yourFont = YourFont({
-variable: "--font-your-font",
-subsets: ["latin"],
-weight: ["300", "400", "500", "600", "700"],
-});
-\`\`\`
-
-## 📝 Environment Variables
-
-Create a \`.env.local\` file in the root directory:
-
-\`\`\`env
-NEXT_PUBLIC_APP_NAME="Your App Name"
-NEXT_PUBLIC_APP_URL="http://localhost:3000"
-NEXT_PUBLIC_API_URL="/api"
-\`\`\`
-
-## 🔧 Configuration Files
-
-### Prettier
-
-Edit \`.prettierrc\` to customize code formatting:
-
-\`\`\`json
-{
-"semi": true,
-"trailingComma": "es5",
-"singleQuote": false,
-"printWidth": 80,
-"tabWidth": 2
-}
-\`\`\`
-
-### Tailwind
-
-Edit \`tailwind.config.ts\` to customize your design system:
-
-\`\`\`typescript
-theme: {
-extend: {
-colors: {
-// Your custom colors
-},
-},
-}
-\`\`\`
-
-**Quick Summary:**
+The theme automatically persists across page reloads and respects system preferences.
 
 ## 📚 Useful Resources
 
