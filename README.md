@@ -1,293 +1,55 @@
-# Next.js Boilerplate 🚀
+<img src="https://github.com/BrixAvengoza/BrixAvengoza/raw/main/assets/neon-line.gif" width="100%">
 
-A modern, production-ready Next.js boilerplate with TypeScript, Tailwind CSS, shadcn/ui, and Docker support.
+<h1 align="left">Hi there 👋, I'm <a href="https://github.com/BrixAvengoza">Brix</a></h1>
 
-## ✨ Features
+<img align="right" src="https://media.tenor.com/kyeZwDUF5N8AAAAd/coding.gif" width="220"/>
 
-- **Next.js 16** - App Router with Server Components
-- **TypeScript** - Type safety and better developer experience
-- **Tailwind CSS** - Utility-first CSS framework
-- **shadcn/ui** - Beautiful, accessible component library
-- **TanStack Query** - Powerful data fetching and caching
-- **Storybook** - Component development and documentation
-- **Dark Mode** - Built-in light/dark theme switching
-- **Docker** - Production-ready containerization
-- **Prettier** - Code formatting
-- **ESLint** - Code linting
+### 💻 Frontend Developer
 
-## 📦 Tech Stack
-
-- **Framework:** Next.js 16
-- **Language:** TypeScript
-- **Styling:** Tailwind CSS
-- **UI Components:** shadcn/ui
-- **Icons:** Lucide React
-- **Theme:** next-themes
-- **Data Fetching:** TanStack Query (React Query)
-- **HTTP Client:** Axios
-- **Component Documentation:** Storybook 10
-- **Package Manager:** Bun
-- **Container:** Docker
-
-## 🚀 Getting Started
-
-### Prerequisites
-
-- Node.js 18+ or Bun 1.0+
-- Docker (optional, for containerized deployment)
-
-### Installation
-
-1. **Clone the repository:**
-
-```bash
-git clone <your-repo-url>
-cd nextshad-boilerplate
-```
-
-2. **Install dependencies:**
-
-```bash
-bun install
-
-# or
-
-npm install
-```
-
-3. **Run the development server:**
-
-```bash
-bun dev
-
-# or
-
-npm run dev
-```
-
-4. **Open your browser:**
-
-Navigate to [http://localhost:3000](http://localhost:3000)
-
-## 📚 Storybook
-
-Storybook is included for component development and documentation.
-
-### Run Storybook
-
-```bash
-bun run storybook
-```
-
-This will open Storybook at [http://localhost:6006](http://localhost:6006)
-
-### Features Included in Storybook
-
-- ✅ All shadcn/ui components documented
-- ✅ Typography showcase with Poppins font
-- ✅ Color palette documentation
-- ✅ Light/Dark mode preview
-- ✅ Interactive controls for component props
-
-### Build Storybook for Production
-
-```bash
-bun run build-storybook
-```
-
-This generates a static site in the `storybook-static` directory that you can deploy.
-
-## 📁 Project Structure
-
-```
-nextshad-boilerplate/
-├── .storybook/              # Storybook configuration
-│   ├── main.ts              # Storybook main config
-│   └── preview.tsx          # Storybook preview config
-├── public/                  # Static assets
-├── src/
-│   ├── app/                 # Next.js App Router
-│   │   ├── layout.tsx       # Root layout
-│   │   ├── page.tsx         # Home page
-│   │   └── globals.css      # Global styles
-│   ├── components/
-│   │   ├── ui/              # shadcn/ui components
-│   │   ├── features/        # Feature-specific components
-│   │   ├── layouts/         # Layout components
-│   │   └── providers/       # Context providers (Theme, Query)
-│   ├── hooks/               # Custom React hooks
-│   │   ├── index.ts         # useMediaQuery, useDebounce
-│   │   └── use-query-hooks.ts  # TanStack Query hooks
-│   ├── lib/
-│   │   ├── utils.ts         # Utility functions (cn helper)
-│   │   ├── api/             # API utilities (axios wrapper)
-│   │   └── config/          # Configuration files
-│   ├── types/               # TypeScript type definitions
-│   └── constants/           # Application constants
-├── .prettierrc              # Prettier configuration
-├── components.json          # shadcn/ui configuration
-├── tailwind.config.ts       # Tailwind CSS configuration
-├── tsconfig.json            # TypeScript configuration
-├── next.config.ts           # Next.js configuration
-├── Dockerfile               # Docker configuration
-├── docker-compose.yml       # Docker Compose configuration
-└── package.json             # Dependencies and scripts
-```
-
-## 🎨 Components Included
-
-The boilerplate includes the following shadcn/ui components:
-
-- ✅ Button
-- ✅ Input
-- ✅ Textarea
-- ✅ Switch
-- ✅ Label
-- ✅ Alert
-- ✅ Sheet
-- ✅ Skeleton
-- ✅ Sonner (Toast notifications)
-
-### Adding More Components
-
-To add more shadcn/ui components:
-
-```bash
-bunx shadcn@latest add <component-name>
-
-# or
-
-npx shadcn@latest add <component-name>
-```
-
-**Example:**
-
-```bash
-bunx shadcn@latest add dialog card
-```
-
-## 🎯 Available Scripts
-
-```bash
-# Development
-bun dev              # Start development server
-bun build            # Build for production
-bun start            # Start production server
-
-# Storybook
-bun run storybook    # Start Storybook dev server
-bun run build-storybook  # Build Storybook for production
-
-# Code Quality
-bun run lint         # Run ESLint
-bun run format       # Format code with Prettier
-bun run format:check # Check code formatting
-bun run type-check   # TypeScript type checking
-
-# Docker
-bun run docker:build # Build Docker image
-bun run docker:run   # Run Docker container
-bun run docker:up    # Start with docker-compose
-bun run docker:down  # Stop docker-compose
-```
-
-## 🔮 TanStack Query (React Query)
-
-This boilerplate includes TanStack Query for powerful data fetching, caching, and state management.
-
-### Basic Usage
-
-```tsx
-"use client";
-
-import { useQuery } from "@tanstack/react-query";
-import { api } from "@/lib/api";
-
-export function MyComponent() {
-  const { data, isLoading, error } = useQuery({
-    queryKey: ["posts"],
-    queryFn: () => api.get("/posts"),
-  });
-
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error.message}</div>;
-
-  return <div>{/* Render your data */}</div>;
-}
-```
-
-### Custom Hooks
-
-Example custom hooks are provided in `src/hooks/use-query-hooks.ts`:
-
-```tsx
-import { usePosts, useCreatePost } from "@/hooks/use-query-hooks";
-
-export function PostsList() {
-  const { data: posts } = usePosts();
-  const createPost = useCreatePost();
-
-  const handleCreate = () => {
-    createPost.mutate({
-      title: "New Post",
-      content: "Post content",
-    });
-  };
-
-  return (
-    // Your component
-  );
-}
-```
-
-### Features Included
-
-- ✅ Automatic caching and refetching
-- ✅ Optimistic updates
-- ✅ Query invalidation
-- ✅ Pre-configured with sensible defaults
-- ✅ Example hooks for common patterns
-
-For more information, check the [TanStack Query Documentation](https://tanstack.com/query/latest)
-
-## 🌓 Theme Switching
-
-The boilerplate includes a built-in theme switcher component. To use it:
-
-```tsx
-import { ThemeSwitcher } from "@/components/features/ThemeSwitcher";
-
-export default function MyComponent() {
-  return (
-    <div>
-      <ThemeSwitcher />
-    </div>
-  );
-}
-```
-
-The theme automatically persists across page reloads and respects system preferences.
-
-## 📚 Useful Resources
-
-- [Next.js Documentation](https://nextjs.org/docs)
-- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
-- [shadcn/ui Documentation](https://ui.shadcn.com)
-- [Lucide Icons](https://lucide.dev)
-- [Docker Documentation](https://docs.docker.com)
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## 🙏 Acknowledgments
-
-- [shadcn](https://twitter.com/shadcn) for the amazing UI components
-- [Vercel](https://vercel.com) for Next.js
-- The open-source community
+Frontend Developer with 3+ years of experience building scalable web and mobile applications using Next.js, React Native, and Supabase
 
 ---
 
-**Happy coding! 🎉**
+### 🛠 Tech Stack
 
-If you find this boilerplate helpful, please give it a ⭐ on GitHub!
+#### 🚀 Core Frontend
+
+![React](https://img.shields.io/badge/-React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Next.js](https://img.shields.io/badge/-Next.js-000?style=for-the-badge&logo=next.js&logoColor=white)
+![React Native](https://img.shields.io/badge/-React%20Native-282C34?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Expo](https://img.shields.io/badge/-Expo-000020?style=for-the-badge&logo=expo&logoColor=white)
+![TypeScript](https://img.shields.io/badge/-TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+
+#### ⚙️ Backend & Data Layer
+
+![Supabase](https://img.shields.io/badge/-Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
+![tRPC](https://img.shields.io/badge/-tRPC-3178C6?style=for-the-badge&logo=trpc&logoColor=white)
+![Drizzle ORM](https://img.shields.io/badge/-Drizzle%20ORM-000?style=for-the-badge&logo=drizzle&logoColor=yellow)
+![TanStack Query](https://img.shields.io/badge/-TanStack%20Query-FF4154?style=for-the-badge&logo=react-query&logoColor=white)
+![SWR](https://img.shields.io/badge/-SWR-000?style=for-the-badge&logo=vercel&logoColor=white)
+
+#### 🎨 UI & Design Systems
+
+![Tailwind CSS](https://img.shields.io/badge/-Tailwind%20CSS-06B6D4?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Chakra UI](https://img.shields.io/badge/-Chakra%20UI-319795?style=for-the-badge&logo=chakra-ui&logoColor=white)
+![ShadCN UI](https://img.shields.io/badge/-ShadCN%20UI-000000?style=for-the-badge&logo=vercel&logoColor=white)
+![Tamagui](https://img.shields.io/badge/-Tamagui-444?style=for-the-badge&logo=tamagui&logoColor=white)
+
+#### 🧪 Testing
+
+![Jest](https://img.shields.io/badge/-Jest-C21325?style=for-the-badge&logo=jest&logoColor=white)
+![Cypress](https://img.shields.io/badge/-Cypress-17202C?style=for-the-badge&logo=cypress&logoColor=white)
+
+---
+
+### 🌐 Let’s Connect!
+
+<div align="center">
+  <a href="mailto:brixbimboavengoza@gmail.com"><img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" /></a>
+  <a href="https://www.linkedin.com/in/brix-a-230421171/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /></a>
+  <a href="https://github.com/BrixAvengoza"><img src="https://img.shields.io/badge/GitHub-171515?style=for-the-badge&logo=github&logoColor=white" /></a>
+</div>
+
+---
+
+<img src="https://github.com/BrixAvengoza/BrixAvengoza/raw/main/assets/neon-line.gif" width="100%">
