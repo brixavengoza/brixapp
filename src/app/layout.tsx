@@ -1,13 +1,22 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import { Poppins, Roboto } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { QueryProvider } from "@/components/providers/QueryProvider";
 import { Toaster } from "@/components/ui/sonner";
 import { APP_DESCRIPTION, APP_NAME } from "@/constants";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { ArticleJsonLd } from "next-seo";
 
 const poppins = Poppins({
   variable: "--font-poppins",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
+});
+
+const roboto = Roboto({
+  variable: "--font-roboto",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
   display: "swap",
@@ -25,7 +34,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${poppins.variable} font-sans antialiased`}>
+      <body
+        className={`${poppins.variable} ${roboto.variable} font-sans antialiased`}
+      >
+        <ArticleJsonLd
+          headline="Brix Avengoza | Frontend Developer"
+          author="Brix Avengoza"
+          image="/pixel.JPG"
+          description="Brix Avengoza — building clean, fast, and intuitive web experiences."
+        />
         <QueryProvider>
           <ThemeProvider
             attribute="class"
@@ -33,8 +50,10 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            {children}
-            <Toaster />
+            <TooltipProvider>
+              {children}
+              <Toaster />
+            </TooltipProvider>
           </ThemeProvider>
         </QueryProvider>
       </body>

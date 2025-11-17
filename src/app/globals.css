@@ -1,52 +1,139 @@
-/* Using Tailwind CSS v3 - ignore IDE v4 warnings */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 240 5.9% 10%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 240 5.9% 10%;
-    --radius: 0.5rem;
+    /* Light mode */
+    --background: #f9f9fb; /* Main background, soft white */
+    --foreground: #1c1c1e; /* Main text, dark gray for readability */
+
+    /* Cards */
+    --card: #ffffff; /* Card background */
+    --card-border: #e1e1e6; /* Card border */
+    --card-foreground: #1c1c1e; /* Card text */
+
+    /* Inner containers within cards (like gallery) */
+    --card-inner: #f4f4f8; /* Inner container, slightly darker than bg */
+    --card-inner-border: #e2e2e8; /* Inner border */
+
+    /* Popovers */
+    --popover: #ffffff;
+    --popover-foreground: #1c1c1e;
+
+    /* Primary actions */
+    --primary: #8b5cf6;
+    --primary-foreground: #ffffff;
+
+    /* Secondary elements */
+    --secondary: #f0f0f5; /* Slight gray background */
+    --secondary-foreground: #1c1c1e;
+
+    /* Muted/subtle elements */
+    --muted: #f4f4f6; /* Subtle gray elements */
+    --muted-foreground: #737373;
+
+    /* Accent elements (purple) */
+    --accent: #6c5dd3; /* Slightly darker purple for emphasis */
+    --accent-foreground: #ffffff;
+
+    /* Destructive/error states */
+    --destructive: #ef4444;
+    --destructive-foreground: #ffffff;
+
+    /* Borders and inputs */
+    --border: #d9d9e0;
+    --input: #e0e0e8;
+    --ring: #8b5cf6;
+
+    /* Border radius */
+    --radius: 0.75rem;
+
+    /* Gray scale */
+    --gray-50: #fafafa;
+    --gray-100: #f4f4f6;
+    --gray-200: #e6e6eb;
+    --gray-300: #ccccd6;
+    --gray-400: #a6a6b0;
+    --gray-500: #73737d;
+    --gray-600: #52525c;
+    --gray-700: #3a3a45;
+    --gray-800: #26262f;
+    --gray-900: #1c1c28;
+
+    /* Brand purple */
+    --purple-400: #a78bfa;
+    --purple-500: #8b5cf6;
+    --purple-600: #7c3aed;
+
+    /* Success green */
+    --green-400: #4ade80;
+    --green-500: #22c55e;
   }
 
   .dark {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 240 5.9% 10%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
+    /* Dark mode */
+    --background: #050505;
+    --foreground: #cccccc;
+
+    /* Cards */
+    --card: #101010;
+    --card-border: #1a1a1a;
+    --card-foreground: #cccccc;
+
+    /* Inner containers within cards (like the works gallery thumbnails container) */
+    --card-inner: #141414;
+    --card-inner-border: #1d1d1d;
+
+    /* Popovers */
+    --popover: #101010;
+    --popover-foreground: #cccccc;
+
+    /* Primary actions */
+    --primary: #8b5cf6;
+    --primary-foreground: #ffffff;
+
+    /* Secondary elements */
+    --secondary: #181818;
+    --secondary-foreground: #cccccc;
+
+    /* Muted/subtle elements */
+    --muted: #181818;
+    --muted-foreground: #737373;
+
+    /* Accent elements (purple) */
+    --accent: #8b5cf6;
+    --accent-foreground: #ffffff;
+
+    /* Destructive/error states */
+    --destructive: #ef4444;
+    --destructive-foreground: #ffffff;
+
+    /* Borders and inputs */
+    --border: #1a1a1a;
+    --input: #1a1a1a;
+    --ring: #8b5cf6;
+
+    /* Gray scale - Dark mode specific */
+    --gray-50: #fafafa;
+    --gray-100: #f4f4f4;
+    --gray-200: #e8e8e8;
+    --gray-300: #cccccc;
+    --gray-400: #1f1f1f;
+    --gray-500: #292929;
+    --gray-600: #181818;
+    --gray-700: #404040;
+    --gray-800: #262626;
+    --gray-900: #171717;
+
+    /* Brand purple */
+    --purple-400: #a78bfa;
+    --purple-500: #8b5cf6;
+    --purple-600: #7c3aed;
+
+    /* Success green */
+    --green-400: #4ade80;
+    --green-500: #22c55e;
   }
 }
 
@@ -58,3 +145,28 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  .hover-animate {
+    @apply transition-transform duration-200 ease-in-out;
+  }
+}
+
+/* Usage guide:
+ * 
+ * Main background: bg-background (#050505 in dark)
+ * Card backgrounds: bg-card (#101010 in dark)
+ * Card borders: border-card-border (#1a1a1a in dark)
+ * 
+ * Inner containers (like gallery): bg-card-inner (#141414 in dark)
+ * Inner container borders: border-card-inner-border (#1d1d1d in dark)
+ * 
+ * Gray variations:
+ * - gray-600: #181818 (tech stack item backgrounds)
+ * - gray-500: #282828 (hover states, slightly lighter sections)
+ * - gray-400: #1f1f1f (medium gray for other UI elements)
+ * - gray-300: #cccccc (light text color)
+ * 
+ * Purple accent: Use accent or purple-500 (#8b5cf6)
+ * Green status: Use green-500 (#22c55e) for "Available To Work"
+ */

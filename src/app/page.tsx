@@ -1,75 +1,64 @@
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { ThemeSwitcher } from "@/components/features/ThemeSwitcher";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Skeleton } from "@/components/ui/skeleton";
-import { AlertCircle } from "lucide-react";
+import { Projects, RecentWorks, WhatIBring } from "@/components/landing";
+import Clients from "@/components/landing/TechStacks";
+import Contact from "@/components/landing/Contact";
+import ContainerCounter from "@/components/landing/ContainerCounter";
+import FollowMe from "@/components/landing/FollowMe";
+import Profile from "@/components/landing/profile";
+import Services from "@/components/landing/Services";
+import WorkProcess from "@/components/landing/WorkProcess";
+import { Calendar, Flag, Smile } from "lucide-react";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-background">
-      <div className="container mx-auto p-8">
-        {/* Header with theme switcher */}
-        <div className="mb-8 flex items-center justify-between">
-          <h1 className="text-4xl font-bold">Next.js Boilerplate</h1>
-          <ThemeSwitcher />
+    <div className="flex h-screen p-7 text-foreground">
+      <div className="m-auto grid h-full w-full max-w-[1750px] grid-cols-10 grid-rows-6 gap-3 2xl:max-h-[1000px] 2xl:gap-5">
+        <div className="col-span-2 row-span-2">
+          <RecentWorks />
         </div>
-
-        {/* Alert Section */}
-        <Alert className="mb-8">
-          <AlertCircle className="h-4 w-4" />
-          <AlertTitle>Welcome!</AlertTitle>
-          <AlertDescription>
-            This is a modern Next.js boilerplate with TypeScript, Tailwind CSS,
-            and shadcn/ui components.
-          </AlertDescription>
-        </Alert>
-
-        {/* Components Showcase */}
-        <div className="grid gap-8 md:grid-cols-2">
-          {/* Buttons */}
-          <div className="space-y-4 rounded-lg border p-6">
-            <h2 className="text-2xl font-semibold">Buttons</h2>
-            <div className="flex flex-wrap gap-4">
-              <Button>Default</Button>
-              <Button variant="secondary">Secondary</Button>
-              <Button variant="destructive">Destructive</Button>
-              <Button variant="outline">Outline</Button>
-              <Button variant="ghost">Ghost</Button>
-            </div>
-          </div>
-
-          {/* Form Elements */}
-          <div className="space-y-4 rounded-lg border p-6">
-            <h2 className="text-2xl font-semibold">Form Elements</h2>
-            <Input placeholder="Enter your email" type="email" />
-            <Textarea placeholder="Type your message here..." rows={4} />
-          </div>
-
-          {/* Skeleton Loaders */}
-          <div className="space-y-4 rounded-lg border p-6">
-            <h2 className="text-2xl font-semibold">Skeleton Loaders</h2>
-            <div className="space-y-2">
-              <Skeleton className="h-4 w-full" />
-              <Skeleton className="h-4 w-3/4" />
-              <Skeleton className="h-4 w-1/2" />
-            </div>
-          </div>
-
-          {/* Project Info */}
-          <div className="space-y-4 rounded-lg border p-6">
-            <h2 className="text-2xl font-semibold">Features</h2>
-            <ul className="list-inside list-disc space-y-2 text-muted-foreground">
-              <li>Next.js 16 with App Router</li>
-              <li>TypeScript</li>
-              <li>Tailwind CSS</li>
-              <li>shadcn/ui Components</li>
-              <li>Light & Dark Mode</li>
-              <li>Poppins Font</li>
-              <li>Docker Ready</li>
-            </ul>
-          </div>
+        <div className="col-span-2 col-start-1 row-span-2 row-start-3">
+          <Projects />
+        </div>
+        <div className="card-2 col-span-2 col-start-1 row-span-2 row-start-5">
+          <Services />
+        </div>
+        <div className="card-2 col-start-3 row-start-1">
+          <ContainerCounter
+            title="Projects"
+            value={30}
+            icon={<Flag size={16} className="text-primary" />}
+          />
+        </div>
+        <div className="card-2 col-start-4 row-start-1">
+          <ContainerCounter
+            title="Clients"
+            value={8}
+            icon={<Smile size={16} className="text-primary" />}
+          />
+        </div>
+        <div className="card-2 col-start-5 row-start-1">
+          <ContainerCounter
+            title="Years"
+            value={4}
+            icon={<Calendar size={16} className="text-primary" />}
+          />
+        </div>
+        <div className="card-2 col-span-3 col-start-3 row-span-3 row-start-2">
+          <Profile />
+        </div>
+        <div className="card-2 col-span-3 col-start-3 row-span-2 row-start-5">
+          <Clients />
+        </div>
+        <div className="card-2 col-span-3 col-start-6 row-span-3 row-start-1">
+          <WhatIBring />
+        </div>
+        <div className="card-2 col-span-2 col-start-6 row-span-3 row-start-4">
+          <FollowMe />
+        </div>
+        <div className="card-2 col-span-3 col-start-8 row-span-3 row-start-4">
+          <Contact />
+        </div>
+        <div className="card-2 col-span-2 col-start-9 row-span-3 row-start-1">
+          <WorkProcess />
         </div>
       </div>
     </div>
