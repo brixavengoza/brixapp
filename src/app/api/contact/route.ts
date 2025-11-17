@@ -4,13 +4,14 @@ import { createAdminClient } from "@/lib/supabase/server";
 export const runtime = "nodejs";
 
 const resendApiKey = process.env.RESEND_API_KEY;
-
 const resend = new Resend(resendApiKey!);
+
+const publicEmail = process.env.NEXT_PUBLIC_EMAIL || "";
 
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { name, email, subject, message, position } = body;
+    const { name, email, subject, message, position, recaptchaToken } = body;
 
     if (!name || !email || !subject || !message || !position) {
       return NextResponse.json(
@@ -20,6 +21,8 @@ export async function POST(request: Request) {
     }
 
     const supabase = await createAdminClient();
+
+    // verify recaptcha token
 
     const { data: submission, error: dbError } = await supabase
       .from("contact_submissions")
@@ -43,7 +46,7 @@ export async function POST(request: Request) {
     if (process.env.RESEND_API_KEY) {
       try {
         await resend.emails.send({
-          from: "Brix Avengoza <onboarding@resend.dev>",
+          from: "Brix Avengoza <noreply@brixavengoza.dev>",
           to: [email],
           subject: "Thanks for reaching out!",
           html: `
@@ -90,8 +93,8 @@ export async function POST(request: Request) {
         });
 
         await resend.emails.send({
-          from: "Contact Form <onboarding@resend.dev>",
-          to: ["brixbimboavengoza@gmail.com"],
+          from: "Contact Form <noreply@brixavengoza.dev>",
+          to: [publicEmail],
           subject: `New Contact: ${subject}`,
           html: `
             <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

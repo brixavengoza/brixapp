@@ -36,6 +36,7 @@ import {
   HeartHandshake,
 } from "lucide-react";
 import { toast } from "sonner";
+import { useGoogleReCaptcha } from "@google-recaptcha/react";
 
 enum POSITION_ENUM {
   FRONTEND = "frontend-developer",
@@ -65,6 +66,7 @@ export default function HireMe() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const googleReCaptcha = useGoogleReCaptcha();
 
   const form = useForm<ContactFormValues>({
     resolver: zodResolver(contactFormSchema),
@@ -81,12 +83,15 @@ export default function HireMe() {
     setIsSubmitting(true);
 
     try {
+      const token = await googleReCaptcha?.executeV3?.("action");
+      if (!token) return;
+
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify({ ...data, recaptchaToken: token }),
       });
 
       const result = await response.json();
@@ -127,7 +132,7 @@ export default function HireMe() {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Button size="lg" variant="secondary" className="w-full">
+        <Button disabled size="lg" variant="secondary" className="w-full">
           <HeartHandshake className="text-primary" size={40} />
           Hire Me
         </Button>

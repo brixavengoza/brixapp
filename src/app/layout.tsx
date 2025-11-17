@@ -7,6 +7,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { APP_DESCRIPTION, APP_NAME } from "@/constants";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ArticleJsonLd } from "next-seo";
+import { GoogleReCaptchaProvider } from "./google-recaptcha-provider";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -27,6 +28,8 @@ export const metadata: Metadata = {
   description: APP_DESCRIPTION,
 };
 
+const siteKey = process.env.NEXT_PUBLIC_GOOGLE_SITE_KEY;
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -41,7 +44,7 @@ export default function RootLayout({
           headline="Brix Avengoza | Frontend Developer"
           author="Brix Avengoza"
           image="/pixel.JPG"
-          description="Brix Avengoza — building clean, fast, and intuitive web experiences."
+          description="Brix Avengoza | Freelancer | building clean, fast, and intuitive web experiences."
         />
         <QueryProvider>
           <ThemeProvider
@@ -51,7 +54,9 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <TooltipProvider>
-              {children}
+              <GoogleReCaptchaProvider type="v3" siteKey={siteKey}>
+                {children}
+              </GoogleReCaptchaProvider>
               <Toaster />
             </TooltipProvider>
           </ThemeProvider>
