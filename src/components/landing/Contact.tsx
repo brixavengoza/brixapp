@@ -9,7 +9,7 @@ const calendly = process.env.NEXT_PUBLIC_CALENDLY || "";
 
 export default function Contact() {
   return (
-    <Card>
+    <Card className="gap-5 md:gap-0">
       <Crown
         size={50}
         className="rounded-full bg-gray-200 p-3 text-primary dark:bg-gray-400"

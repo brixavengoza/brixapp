@@ -53,7 +53,6 @@ const config: Config = {
           inner: "var(--card-inner)",
           "inner-border": "var(--card-inner-border)",
         },
-        // Custom gray scale that works with your design
         gray: {
           50: "var(--gray-50)",
           100: "var(--gray-100)",
@@ -66,13 +65,11 @@ const config: Config = {
           800: "var(--gray-800)",
           900: "var(--gray-900)",
         },
-        // Brand purple
         purple: {
           400: "var(--purple-400)",
           500: "var(--purple-500)",
           600: "var(--purple-600)",
         },
-        // Success green
         green: {
           400: "var(--green-400)",
           500: "var(--green-500)",

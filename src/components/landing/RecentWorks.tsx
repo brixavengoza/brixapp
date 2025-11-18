@@ -16,7 +16,7 @@ const focuses = [
 
 export default function RecentWorks() {
   return (
-    <Card>
+    <Card className="gap-5">
       <div className="flex flex-col items-center">
         <div className="flex items-center gap-2">
           <Briefcase size={16} className="text-primary" />

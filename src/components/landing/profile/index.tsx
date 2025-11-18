@@ -60,14 +60,16 @@ export default function Profile() {
               <ThemeToggle />
             </div>
           </div>
-          <h1 className="text-2xl">Brix Avengoza</h1>
-          <p className="text-sm text-muted-foreground">
-            {`I'm a`}{" "}
-            <span className="text-primary">Frontend Engineer</span>{" "}
-          </p>
+          <div>
+            <h1 className="text-2xl">Brix Avengoza</h1>
+            <p className="text-sm text-muted-foreground">
+              {`I'm a`}{" "}
+              <span className="text-primary">Software Engineer</span>{" "}
+            </p>
+          </div>
         </div>
       </div>
-      <div className="flex w-full flex-wrap gap-2 rounded-lg border border-card-inner-border bg-card-inner p-3">
+      <div className="my-5 flex w-full flex-wrap gap-2 rounded-lg border border-card-inner-border bg-card-inner p-3">
         {ProfileInfo.map(({ title, icon }, id) => (
           <div
             key={id}
