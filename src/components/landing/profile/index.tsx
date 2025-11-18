@@ -62,10 +62,7 @@ export default function Profile() {
           </div>
           <div>
             <h1 className="text-2xl">Brix Avengoza</h1>
-            <p className="text-sm text-muted-foreground">
-              {`I'm a`}{" "}
-              <span className="text-primary">Software Engineer</span>{" "}
-            </p>
+            <p className="text-sm text-primary">Frontend Developer</p>
           </div>
         </div>
       </div>
