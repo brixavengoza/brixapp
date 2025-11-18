@@ -28,8 +28,6 @@ export const metadata: Metadata = {
   description: APP_DESCRIPTION,
 };
 
-const siteKey = process.env.NEXT_PUBLIC_GOOGLE_SITE_KEY;
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -54,9 +52,7 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <TooltipProvider>
-              <GoogleReCaptchaProvider type="v3" siteKey={siteKey}>
-                {children}
-              </GoogleReCaptchaProvider>
+              <GoogleReCaptchaProvider>{children}</GoogleReCaptchaProvider>
               <Toaster />
             </TooltipProvider>
           </ThemeProvider>

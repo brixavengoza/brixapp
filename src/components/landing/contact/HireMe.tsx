@@ -63,7 +63,6 @@ const contactFormSchema = z.object({
 type ContactFormValues = z.infer<typeof contactFormSchema>;
 
 export default function HireMe() {
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const googleReCaptcha = useGoogleReCaptcha();
@@ -79,12 +78,17 @@ export default function HireMe() {
     },
   });
 
-  const onSubmit = async (data: ContactFormValues) => {
-    setIsSubmitting(true);
+  const isSubmitting = form.formState.isSubmitting;
 
+  const onSubmit = async (data: ContactFormValues) => {
     try {
       const token = await googleReCaptcha?.executeV3?.("action");
-      if (!token) return;
+
+      if (!token) {
+        toast.error("reCAPTCHA verification failed. Please try again.");
+
+        return;
+      }
 
       const response = await fetch("/api/contact", {
         method: "POST",
@@ -104,20 +108,17 @@ export default function HireMe() {
       toast.success("Message sent successfully!", {
         description: "Check your email for confirmation.",
       });
-    } catch (error: any) {
-      console.error("Error submitting form:", error);
-      toast.error("Failed to send message", {
-        description:
-          error.message || "Please try again or contact me directly via email.",
-      });
-    } finally {
-      setIsSubmitting(false);
+    } catch (error) {
+      if (error instanceof Error) {
+        toast.error("Failed to send message", {
+          description:
+            error.message ||
+            "Please try again or contact me directly via email.",
+        });
+      } else {
+        throw error;
+      }
     }
-  };
-
-  const handleSendAnother = () => {
-    setIsSuccess(false);
-    form.reset();
   };
 
   const handleClose = () => {
@@ -132,7 +133,7 @@ export default function HireMe() {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Button disabled size="lg" variant="secondary" className="w-full">
+        <Button size="lg" variant="secondary" className="w-full">
           <HeartHandshake className="text-primary" size={40} />
           Hire Me
         </Button>
@@ -216,15 +217,6 @@ export default function HireMe() {
               </div>
 
               <div className="flex w-full flex-col gap-3 pt-4 sm:flex-row">
-                <Button
-                  onClick={handleSendAnother}
-                  variant="outline"
-                  className="w-full"
-                  size="lg"
-                >
-                  <Mail className="mr-2 h-4 w-4" />
-                  Send New Message
-                </Button>
                 <Button onClick={handleClose} className="w-full" size="lg">
                   <Sparkles className="mr-2 h-4 w-4" />
                   Close

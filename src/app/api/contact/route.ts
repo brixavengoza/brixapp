@@ -1,12 +1,35 @@
 import { Resend } from "resend";
 import { NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/supabase/server";
+import axios from "axios";
+
 export const runtime = "nodejs";
 
 const resendApiKey = process.env.RESEND_API_KEY;
 const resend = new Resend(resendApiKey!);
 
 const publicEmail = process.env.NEXT_PUBLIC_EMAIL || "";
+const recaptchaSecretKey = process.env.RECAPTCHA_SECRET_KEY;
+
+async function verifyRecaptcha(token: string): Promise<boolean> {
+  try {
+    const response = await axios.post(
+      `https://www.google.com/recaptcha/api/siteverify`,
+      null,
+      {
+        params: {
+          secret: recaptchaSecretKey,
+          response: token,
+        },
+      }
+    );
+
+    return response.data.success && response.data.score >= 0.5;
+  } catch (error) {
+    console.error("reCAPTCHA verification error:", error);
+    return false;
+  }
+}
 
 export async function POST(request: Request) {
   try {
@@ -20,9 +43,23 @@ export async function POST(request: Request) {
       );
     }
 
-    const supabase = await createAdminClient();
+    if (!recaptchaToken) {
+      return NextResponse.json(
+        { error: "reCAPTCHA token is missing" },
+        { status: 400 }
+      );
+    }
 
-    // verify recaptcha token
+    const isValidRecaptcha = await verifyRecaptcha(recaptchaToken);
+
+    if (!isValidRecaptcha) {
+      return NextResponse.json(
+        { error: "reCAPTCHA verification failed" },
+        { status: 400 }
+      );
+    }
+
+    const supabase = await createAdminClient();
 
     const { data: submission, error: dbError } = await supabase
       .from("contact_submissions")
@@ -136,7 +173,7 @@ export async function POST(request: Request) {
                               </tr>
                               <tr>
                                 <td style="padding-bottom: 15px;">
-                                  <strong style="color: #667eea;">Subject:</strong><br/>
+                                  <strong style="color: #667eea;">Email:</strong><br/>
                                   <span style="color: #333333;">${subject}</span>
                                 </td>
                               </tr>
