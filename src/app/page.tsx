@@ -39,7 +39,7 @@ export default function Home() {
             <div className="card-2">
               <ContainerCounter
                 title="Years"
-                value={4}
+                value={3}
                 icon={<Calendar size={16} className="text-primary" />}
               />
             </div>

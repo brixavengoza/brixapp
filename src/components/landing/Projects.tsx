@@ -4,6 +4,7 @@ import { Button } from "../ui/button";
 import CarouselSlider from "../features/CarouselSlider";
 import Image from "next/image";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
+import Link from "next/link";
 
 const TechStacks1 = [
   {
@@ -76,14 +77,15 @@ export default function Projects() {
         <Tooltip>
           <TooltipTrigger asChild>
             <Button
+              asChild
               size="sm"
               className="absolute bottom-5 left-1/2 -translate-x-1/2"
             >
-              View Works
+              <Link href="/works">View Works</Link>
             </Button>
           </TooltipTrigger>
           <TooltipContent className="bg-secondary">
-            <p>Coming Soon!</p>
+            <p className="text-black dark:text-white">Coming Soon!</p>
           </TooltipContent>
         </Tooltip>
       </div>

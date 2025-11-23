@@ -119,7 +119,7 @@ export default function Services() {
             </Button>
           </TooltipTrigger>
           <TooltipContent className="bg-secondary">
-            <p>Coming Soon!</p>
+            <p className="text-black dark:text-white">Coming Soon!</p>
           </TooltipContent>
         </Tooltip>
       </div>
